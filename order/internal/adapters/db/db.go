@@ -3,8 +3,8 @@ package db
 import (
 	"fmt"
 
-	"gorm.io/driver/mysql"
 	"github.com/kwesilarbi/store-microservices/order/internal/application/core/domain"
+	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
@@ -41,7 +41,7 @@ func NewAdapter(dataSourceUrl string) (*Adapter, error) {
 	return &Adapter{db: db}, nil
 }
 
-func (a Adapter) Get(id string) (domain.Order, error) {
+func (a Adapter) Get(id int64) (domain.Order, error) {
 	var orderEntity Order
 	res := a.db.First(&orderEntity, id)
 	var orderItems []domain.OrderItem
